@@ -20,6 +20,49 @@
 */
 
 exports.defineAutoTests = function() {
+
+  /* 'use strict'; */
+
+  var MYTIMEOUT = 12000;
+
+  var DEFAULT_SIZE = 5000000; // max to avoid popup in safari/ios
+
+  // FUTURE TBD replace in test(s):
+  function ok(test, desc) { expect(test).toBe(true); }
+  function equal(a, b, desc) { expect(a).toEqual(b); } // '=='
+  function strictEqual(a, b, desc) { expect(a).toBe(b); } // '==='
+
+  //var isAndroid = /Android/.test(navigator.userAgent);
+  //var isWindows = /Windows NT/.test(navigator.userAgent); // Windows [NT] (8.1)
+  //var isWP8 = /IEMobile/.test(navigator.userAgent); // WP(8)
+  // FUTURE:
+  //var isWindowsPhone = /Windows Phone 8.1/.test(navigator.userAgent); // Windows [NT] (8.1)
+  //var isIE = isWindows || isWP8;
+  //var isWebKit = !isIE; // TBD [Android or iOS]
+
+  var scenarioList = [ 'Plugin', 'HTML5' ];
+
+  //var scenarioCount = isWebKit ? 2 : 1;
+  var scenarioCount = 1;
+
+  describe('check startup', function() {
+
+  /**
+  it('receives deviceready event', function(done) {
+    expect(true).toBe(true);
+    document.addEventListener("deviceready", function() { done(); });
+  }, MYTIMEOUT);
+  **/
+
+  it('has openDatabase', function() {
+    //if (isWebKit) expect(window.openDatabase).toBeDefined();
+    expect(sqlitePlugin).toBeDefined();
+    expect(sqlitePlugin.openDatabase).toBeDefined();
+    expect(window.sqlitePlugin).toBeDefined();
+    expect(window.sqlitePlugin.openDatabase).toBeDefined();
+  });
+  });
+
   describe('(window.sqlitePlugin)', function () {
     it("should exist", function() {
       expect(window.sqlitePlugin).toBeDefined();
@@ -109,3 +152,5 @@ exports.defineManualTests = function(contentEl, createActionButton) {
     }, "dump_device");
 };
 **/
+
+/* vim: set expandtab : */
