@@ -21,7 +21,8 @@ var scenarioList = [ 'Plugin', 'HTML5' ];
 
 var scenarioCount = isWebKit ? 2 : 1;
 
-describe('check startup', function() {
+exports.defineAutoTests = function() {
+  describe('check startup', function() {
 
   it('receives deviceready event', function(done) {
     expect(true).toBe(true);
@@ -33,9 +34,9 @@ describe('check startup', function() {
     expect(window.sqlitePlugin).toBeDefined();
     expect(window.sqlitePlugin.openDatabase).toBeDefined();
   });
-});
+  });
 
-describe('simple tests', function() {
+  describe('simple tests', function() {
 
   for (var i=0; i<scenarioCount; ++i) {
 
@@ -244,6 +245,7 @@ describe('simple tests', function() {
 
     });
   };
-});
+  });
+};
 
 /* vim: set expandtab : */
