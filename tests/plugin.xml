@@ -6,9 +6,6 @@
 
     <name>Cordova sqlite storage tests</name>
 
-    <js-module src="simple.js" name="simple">
-    </js-module>
-
     <js-module src="tests.js" name="tests">
     </js-module>
 
