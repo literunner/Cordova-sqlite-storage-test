@@ -7,7 +7,7 @@
         "url": "https://github.com/AllJoyn-Cordova/cordova-plugin-alljoyn.git"
     },
     "scripts": {
-        "test": "node tests/run.js"
+        "test": "cordova-paramedic --platform android --plugin ."
     },
     "devDependencies": {
         "cordova": "^4.3.0",
