@@ -1,10 +1,10 @@
 {
     "version": "0.0.2",
-    "name": "org.allseen.alljoyn",
-    "description": "Cordova AllJoyn Plugin",
+    "name": "io.liteglue.sqliteStorage",
+    "description": "Cordova sqlite storage adapter",
     "repository": {
         "type": "git",
-        "url": "https://github.com/AllJoyn-Cordova/cordova-plugin-alljoyn.git"
+        "url": "https://github.com/litehelpers/Cordova-sqlite-storage.git"
     },
     "scripts": {
         "test": "cordova-paramedic --platform android --plugin ."
@@ -19,7 +19,6 @@
         "load-grunt-tasks": "^1.0.0"
     },
     "optionalDependencies": {
-      "alljoyn": "^0.1.4",
       "ios-sim": "^3.1.1",
       "ios-deploy": "^1.4.0"
     }
