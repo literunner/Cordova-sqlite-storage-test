@@ -16,6 +16,7 @@ var scenarioList = [ 'Plugin', 'HTML5' ];
 
 var scenarioCount = window.hasWebKitBrowser ? 2 : 1;
 
+// simple tests:
 var mytests = function() {
 
   for (var i=0; i<scenarioCount; ++i) {

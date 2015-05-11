@@ -44,7 +44,8 @@ var scenarioList = [ 'Plugin', 'HTML5' ];
 
 var scenarioCount = isWebKit ? 2 : 1;
 
-describe('legacy tests', function() {
+// legacy tests:
+var mytests = function() {
 
   for (var i=0; i<scenarioCount; ++i) {
 
@@ -55,7 +56,7 @@ describe('legacy tests', function() {
 
       // NOTE: MUST be defined in function scope, NOT outer scope:
       var openDatabase = function(name, ignored1, ignored2, ignored3) {
-        if (isWebSql) {
+        if (scenarioName == 'HTML5') {
           return window.openDatabase(name, "1.0", "Demo", DEFAULT_SIZE);
         } else {
           return window.sqlitePlugin.openDatabase(name, "1.0", "Demo", DEFAULT_SIZE);
@@ -959,9 +960,10 @@ describe('legacy tests', function() {
 
         // XXX [BUG #230] BROKEN for iOS, Windows, and WP(8) versions of the plugin
         test_it(suiteName + 'empty transaction (no sql statements) and then SELECT transaction', function () {
-          if (isWindows) pending('BROKEN for Windows');
-          if (isWP8) pending('BROKEN for WP(8)');
-          if (!(isWebSql || isAndroid || isIE)) pending('BROKEN for iOS version of plugin');
+          //if (isWindows) pending('BROKEN for Windows');
+          //if (isWP8) pending('BROKEN for WP(8)');
+          //if (!(isWebSql || isAndroid || isIE)) pending('BROKEN for iOS version of plugin');
+          if (!isWebSql) pending('[Apparently] BROKEN for ALL versions of plugin');
 
           stop(2);
 
@@ -982,7 +984,7 @@ describe('legacy tests', function() {
               equal(res.rows.item(0)['1'], 1);
             });
           }, function (error) {
-            // XXX [BUG #230] iOS, Windows, and WP(8) versions of the plugin fail here:
+            // XXX [BUG #230] (ALL) versions of the plugin (seem to) fail here:
             ok(false, 'transaction failed ' + error);
             start();
           }, function () {
@@ -2202,6 +2204,9 @@ describe('legacy tests', function() {
 
   });
 
-});
+}
+
+if (window.hasBrowser) mytests();
+else exports.defineAutoTests = mytests;
 
 /* vim: set expandtab : */

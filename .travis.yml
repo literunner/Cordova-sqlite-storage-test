@@ -12,3 +12,5 @@ script:
   - cordova-paramedic --platform ios --plugin ${TRAVIS_BUILD_DIR}
   - cp ${TRAVIS_BUILD_DIR}/spec/www/spec/simple-test.js ${TRAVIS_BUILD_DIR}/tests/tests.js
   - cordova-paramedic --platform ios --plugin ${TRAVIS_BUILD_DIR} --timeout 3600000
+  - cp ${TRAVIS_BUILD_DIR}/spec/www/spec/legacy.js ${TRAVIS_BUILD_DIR}/tests/tests.js
+  - cordova-paramedic --platform ios --plugin ${TRAVIS_BUILD_DIR} --timeout 7200000
