@@ -9,33 +9,14 @@ function ok(test, desc) { expect(test).toBe(true); }
 function equal(a, b, desc) { expect(a).toEqual(b); } // '=='
 function strictEqual(a, b, desc) { expect(a).toBe(b); } // '==='
 
-var isAndroid = /Android/.test(navigator.userAgent);
-var isWindows = /Windows NT/.test(navigator.userAgent); // Windows [NT] (8.1)
+// for number bindings test:
 var isWP8 = /IEMobile/.test(navigator.userAgent); // WP(8)
-// FUTURE:
-//var isWindowsPhone = /Windows Phone 8.1/.test(navigator.userAgent); // Windows [NT] (8.1)
-var isIE = isWindows || isWP8;
-var isWebKit = !isIE; // TBD [Android or iOS]
 
 var scenarioList = [ 'Plugin', 'HTML5' ];
 
-var scenarioCount = isWebKit ? 2 : 1;
+var scenarioCount = window.hasWebKitBrowser ? 2 : 1;
 
-describe('check startup', function() {
-
-  it('receives deviceready event', function(done) {
-    expect(true).toBe(true);
-    document.addEventListener("deviceready", function() { done(); });
-  }, MYTIMEOUT);
-
-  it('has openDatabase', function() {
-    if (isWebKit) expect(window.openDatabase).toBeDefined();
-    expect(window.sqlitePlugin).toBeDefined();
-    expect(window.sqlitePlugin.openDatabase).toBeDefined();
-  });
-});
-
-describe('simple tests', function() {
+var mytests = function() {
 
   for (var i=0; i<scenarioCount; ++i) {
 
@@ -244,6 +225,9 @@ describe('simple tests', function() {
 
     });
   };
-});
+}
+
+if (window.hasBrowser) mytests();
+else exports.defineAutoTests = mytests;
 
 /* vim: set expandtab : */
